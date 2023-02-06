@@ -25,6 +25,14 @@ export const ContainerLogin = styled.div`
     .inputs {
         width: 100%;
     }
+
+    form {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 `
 
 export const Logo = styled.h1`
@@ -82,7 +90,7 @@ export const Button = styled.button`
 
     background: #FC8019;
     color: #fff;
-    border-radius: 20px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
 
