@@ -59,7 +59,9 @@ export const H2 = styled.h2`
 `
 
 export const Label = styled.label`
+    margin-top: 3rem;
     margin-bottom: 0.3rem;
+    display: block;
     
     font-style: normal;
     font-weight: 500;
@@ -70,7 +72,6 @@ export const Label = styled.label`
 export const Input = styled.input`
     height: 3.8rem;
     width: 100%;
-    margin-bottom: 2.5rem;
     padding-left: 1.5rem;
 
     background: #FFFFFF;
@@ -79,7 +80,7 @@ export const Input = styled.input`
 
     outline: none;
 
-    border: solid 2px #FC8019;
+    border: ${ props => props.errors ? '2px solid #CC1717' : '2px solid #FC8019'};
 `
 
 export const Button = styled.button`
@@ -120,4 +121,15 @@ export const SingUpLink = styled.p`
     a {
         color: #000;
     }
+`
+
+export const ErrorMessage = styled.p`
+    margin-top: .2rem;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+
+    color: #CC1717;
 `
