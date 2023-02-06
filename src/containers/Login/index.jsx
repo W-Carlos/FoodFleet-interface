@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
 
+import api from "../../services/api.jsx"
 import { Container, ImageLogin, ContainerLogin, Logo, H2, Label, Input, SingUpLink, Button, ErrorMessage } from "./styles";
 import imageLogin from "../../assets/home.jpg"
 
@@ -13,11 +14,23 @@ function Login() {
     password: Yup.string().required("A senha é obrigatoria").min(6, "A senha deve ter pelo menos 6 digitos")
   })
 
-  const { register, handleSubmit, formState:{ errors } } = useForm({
+  const { 
+    register, 
+    handleSubmit, 
+    formState:{ errors } 
+  } = useForm({
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = data => console.log(data);
+  // Conectando com o backend quando o usuario clica no botão de login
+  const onSubmit = async clientData => {
+    const response = await api.post("sessions", {
+      email: clientData.email,
+      password: clientData.password
+    })
+
+    console.log(response)
+  }
 
   return (
     <Container>
