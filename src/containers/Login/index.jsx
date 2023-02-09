@@ -4,7 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
 
 import api from "../../services/api.jsx"
-import { Container, ImageLogin, ContainerLogin, Logo, H2, Label, Input, SingUpLink, Button, ErrorMessage } from "./styles";
+import Button from "../../components/Button"
+import { Container, ImageLogin, ContainerLogin, Logo, H2, Label, Input, SingUpLink, ErrorMessage } from "./styles";
 import imageLogin from "../../assets/home.jpg"
 
 function Login() {
@@ -54,7 +55,7 @@ function Login() {
             <ErrorMessage>{errors.password?.message}</ErrorMessage>
           </div>
 
-          <Button type="submit">Entrar</Button>
+          <Button type="submit" style={{marginTop: '6rem'}}>Entrar</Button>
         </form>
 
         <SingUpLink>Não possui conta? <a href="#">Sing up</a></SingUpLink>
