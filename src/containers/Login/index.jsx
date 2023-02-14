@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
+import { toast } from 'react-toastify';
 
 import api from "../../services/api.jsx"
 import Button from "../../components/Button"
@@ -25,10 +26,17 @@ function Login() {
 
   // Conectando com o backend quando o usuario clica no botão de login
   const onSubmit = async clientData => {
-    const response = await api.post("sessions", {
-      email: clientData.email,
-      password: clientData.password
-    })
+    const response = await toast.promise(
+      api.post("sessions", {
+        email: clientData.email,
+        password: clientData.password
+      }),
+      {
+        pending: 'Verificando seus dados',
+        success: 'Seja bem-vindo(a) 👌',
+        error: 'Verifique seu e-mail ou senha 🤯'
+      }
+    ) 
 
     console.log(response)
   }

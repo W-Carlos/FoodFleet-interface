@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
+import { toast } from 'react-toastify';
 
 import api from "../../services/api.jsx"
 import Button from "../../components/Button"
@@ -27,13 +28,26 @@ function Register() {
 
   // Conectando com o backend quando o usuario clica no botão de login
   const onSubmit = async clientData => {
-    const response = await api.post("users", {
-      name: clientData.name,
-      email: clientData.email,
-      password: clientData.password
-    })
-
-    console.log(response)
+    try{
+      const {status} = await api.post("users", {
+          name: clientData.name,
+          email: clientData.email,
+          password: clientData.password
+        }, 
+        {
+          validateStatus: () => true
+        }
+      )
+      if(status === 201 || status === 200){
+        toast.success('Cadastro criado com sucesso!')
+      } else if(status === 409){
+        toast.error('E-mail já cadastrado! Faça o login para continuar')
+      } else {
+        throw new error
+      }
+    }catch(err){
+      toast.error('Falha no sistema! Tente novamente')
+    }
   }
 
   return (
