@@ -1,5 +1,5 @@
 /* Contexto para armazenar informações do usuário */
-import React, {createContext, useContext} from "react";
+import React, {createContext, useContext, useState} from "react";
 import PropTypes from 'prop-types'
 
 //Criando o contexto
@@ -7,11 +7,15 @@ const UserContext = createContext({})
 
 //Useprovider vai armazenar as informações que serão disponibilizadas para toda a aplicação
 export const UserProvider = ({children}) => {
-    const user = {name: 'Carlos', age: 25}
-    const userTwo = {name: 'João', age: 50}
+    const [userData, setUserData] = useState({})
+
+    // Função que vai gravar os dados do usuário quando for chamada
+    const putUserData = userInfo => {
+        setUserData(userInfo)
+    }
 
     return(
-        <UserContext.Provider value={{user, userTwo}}>
+        <UserContext.Provider value={{ putUserData, userData }}>
             {children}
         </UserContext.Provider>
     )

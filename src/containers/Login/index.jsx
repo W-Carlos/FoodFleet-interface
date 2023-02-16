@@ -4,16 +4,24 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
 import { toast } from 'react-toastify';
 
-import {useUser} from '../../hooks/UseContext.jsx'
+import { useUser } from '../../hooks/UseContext'
 import api from "../../services/api.jsx"
 import Button from "../../components/Button"
-import { Container, ImageLogin, ContainerLogin, Logo, H2, Label, Input, SingUpLink, ErrorMessage } from "./styles";
+import { 
+  Container, 
+  ImageLogin, 
+  ContainerLogin,
+  Logo,
+  H2, 
+  Label, 
+  Input, 
+  SingUpLink, 
+  ErrorMessage 
+} from "./styles";
 import imageLogin from "../../assets/home.jpg"
 
 function Login() {
-  const users = useUser()
-
-  console.log(users)
+  const { putUserData, userData } = useUser()
 
   // Validando email e senha
   const schema = Yup.object().shape({
@@ -31,7 +39,7 @@ function Login() {
 
   // Conectando com o backend quando o usuario clica no botão de login
   const onSubmit = async clientData => {
-    const response = await toast.promise(
+    const { data } = await toast.promise(
       api.post("sessions", {
         email: clientData.email,
         password: clientData.password
@@ -43,7 +51,9 @@ function Login() {
       }
     ) 
 
-    console.log(response)
+    putUserData(data)
+    console.log(userData)
+
   }
 
   return (
