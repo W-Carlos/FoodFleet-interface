@@ -4,12 +4,17 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
 import { toast } from 'react-toastify';
 
+import {useUser} from '../../hooks/UseContext.jsx'
 import api from "../../services/api.jsx"
 import Button from "../../components/Button"
 import { Container, ImageLogin, ContainerLogin, Logo, H2, Label, Input, SingUpLink, ErrorMessage } from "./styles";
 import imageLogin from "../../assets/home.jpg"
 
 function Login() {
+  const users = useUser()
+
+  console.log(users)
+
   // Validando email e senha
   const schema = Yup.object().shape({
     email: Yup.string().email("Digite um e-mail válido").required("O e-mail é obrigatorio"),
