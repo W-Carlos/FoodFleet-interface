@@ -21,7 +21,7 @@ import {
 import imageLogin from "../../assets/home.jpg"
 
 function Login() {
-  const { putUserData, userData } = useUser()
+  const { putUserData } = useUser()
 
   // Validando email e senha
   const schema = Yup.object().shape({
@@ -52,7 +52,6 @@ function Login() {
     ) 
 
     putUserData(data)
-    console.log(userData)
 
   }
 

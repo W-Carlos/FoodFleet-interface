@@ -1,5 +1,5 @@
 /* Contexto para armazenar informações do usuário */
-import React, {createContext, useContext, useState} from "react";
+import React, {createContext, useContext, useState, useEffect} from "react";
 import PropTypes from 'prop-types'
 
 //Criando o contexto
@@ -10,9 +10,25 @@ export const UserProvider = ({children}) => {
     const [userData, setUserData] = useState({})
 
     // Função que vai gravar os dados do usuário quando for chamada
-    const putUserData = userInfo => {
+    const putUserData = async userInfo => {
         setUserData(userInfo)
+
+        // Gravando os dados do usuário no localStorage
+        await localStorage.setItem('foodfleet:userData', JSON.stringify(userInfo))
     }
+
+    // Recuperando as informações do usuário no localStorage quando a aplicação é iniciada
+    useEffect(() => {
+        const loadUserData = async () => {
+            const clientInfo = await localStorage.getItem('foodfleet:userData')
+
+            if(clientInfo){
+                setUserData(JSON.parse(clientInfo))
+            }
+        }
+
+        loadUserData()
+    }, [])
 
     return(
         <UserContext.Provider value={{ putUserData, userData }}>
