@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
 import { toast } from 'react-toastify';
+import { Link } from "react-router-dom";
 
 import { useUser } from '../../hooks/UseContext'
 import api from "../../services/api.jsx"
@@ -80,7 +81,7 @@ function Login() {
           <Button type="submit" style={{marginTop: '6rem'}}>Entrar</Button>
         </form>
 
-        <SingUpLink>Não possui conta? <a href="#">Sing up</a></SingUpLink>
+        <SingUpLink>Não possui conta? <Link to='/cadastro'>Sing up</Link></SingUpLink>
       </ContainerLogin>
     </Container>
   )
