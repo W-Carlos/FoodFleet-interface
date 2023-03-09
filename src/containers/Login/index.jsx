@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
 import { toast } from 'react-toastify';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useUser } from '../../hooks/UseContext'
 import api from "../../services/api.jsx"
@@ -23,6 +23,7 @@ import imageLogin from "../../assets/home.jpg"
 
 function Login() {
   const { putUserData } = useUser()
+  const navigate = useNavigate()
 
   // Validando email e senha
   const schema = Yup.object().shape({
@@ -53,6 +54,10 @@ function Login() {
     ) 
 
     putUserData(data)
+
+    setTimeout(() => {
+      navigate('/')
+    }, 1000);
 
   }
 
