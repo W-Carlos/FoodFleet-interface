@@ -9,6 +9,10 @@ export const Container = styled.section`
 
     background-color: #fff;
 
+    h2 {
+        font-size: 3.0rem;
+    }
+
     .rec.rec-arrow {
         background-color: #FC8019;
         color: #fff;
@@ -37,7 +41,8 @@ export const ContainerItems = styled.div`
 
 export const Image = styled.img`
     width: 200px;
-    border-radius: 10px;
+    height: 200px;
+    border-radius: 15px;
 `
 
 export const Button = styled.button`
