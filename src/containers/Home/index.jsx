@@ -8,6 +8,7 @@ import {
 } from './styles'
 
 import CategoryCarousel from "../../components/CategoryCarousel";
+import OffersCarousel from "../../components/OffersCarousel";
 
 function Home(){
     return (
@@ -25,6 +26,7 @@ function Home(){
                     </ContainerItem>
                 </SectionHome>
                 <CategoryCarousel />
+                <OffersCarousel />
                 
         </Container>
     )
