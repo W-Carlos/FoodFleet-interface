@@ -5,6 +5,7 @@ import Login from '../containers/Login'
 import Register from '../containers/Register'
 import Home from '../containers/Home'
 import PrivateRoute from './private-route'
+import Products from '../containers/Products'
 
 function RoutesApp() {
     return (
@@ -17,6 +18,11 @@ function RoutesApp() {
                         <Home />
                     </PrivateRoute>
                 } />
+                <Route path='/produtos' element={
+                    <PrivateRoute>
+                        <Products />
+                    </PrivateRoute>
+                } />                    
             </Routes>
         </Router>
     )
